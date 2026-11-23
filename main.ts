@@ -47,6 +47,14 @@ if (
   );
 }
 
+// Second validation gate (redundant safety check, immediately before write):
+// refuse to write a blank line or a line over 240 characters.
+if (LINE.trim().length === 0 || LINE.length > 240) {
+  throw new Error(
+    `Invalid entry line: must be a non-blank line of at most 240 chars, got ${LINE.length} chars.`,
+  );
+}
+
 const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
 mkdirSync(outDir, { recursive: true });
 writeFileSync(join(outDir, "entry.txt"), LINE + "\n", "utf8");
