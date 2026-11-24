@@ -1,4 +1,7 @@
-// A Day of One-Line Pitches — v2
+// A Day of One-Line Pitches — v3
+// v3: same line as v2 (235 chars); only fix is dropping the chmod on the
+// output dir — as user `nobody` in the grader that chmod throws EPERM
+// (dir owned by root) and kills the entry. File chmod kept, now guarded.
 // Competition: u-ronigrv-a-day-of-one-line-pitches-12cd9bb3
 // One sentence, max 240 characters, written to <MAKEFUN_OUTPUT_DIR>/entry.txt
 // and printed to stdout. Node 22 stdlib-only. No dependencies.
@@ -55,14 +58,19 @@ function validateLine(line: string): void {
 
 function main(): void {
   validateLine(LINE);
-  const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? "/output";
-  mkdirSync(outDir, { recursive: true, mode: 0o755 });
-  chmodSync(outDir, 0o755);
+  const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+  mkdirSync(outDir, { recursive: true });
   const outPath = join(outDir, "entry.txt");
   writeFileSync(outPath, LINE + "\n", "utf8");
   // The grader reads the output as another user: pin 0644 explicitly
   // instead of trusting the umask (a 0660 file can fail "not readable").
-  chmodSync(outPath, 0o644);
+  // The file is ours, but a chmod failure must never sink an entry
+  // whose content is already correct on disk.
+  try {
+    chmodSync(outPath, 0o644);
+  } catch {
+    // Ignore: content is already written and verified below.
+  }
   // Round-trip check: what landed on disk must be exactly the line.
   const onDisk = readFileSync(outPath, "utf8");
   if (onDisk !== LINE + "\n") {
