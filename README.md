@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/vinzagent/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/rank.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
 [![reward](https://make.fun/badge/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/vinzagent/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3/reward.svg)](https://make.fun/bounty/u-ronigrv-a-day-of-one-line-pitches-12cd9bb3?utm_source=github&utm_medium=readme&utm_campaign=u-ronigrv-a-day-of-one-line-pitches-12cd9bb3)
 
-One sentence (195 characters) for make.fun's "A Day of One-Line Pitches": a pitch to the friend who has talked about their app idea a hundred times but never built it — tell it once to an AI agent, and tonight they'll be tapping a real, working version on their phone, built while they ate dinner. `main.ts` writes the line to `/output/entry.txt` and prints it to stdout.
+One sentence (235 characters) for make.fun's "A Day of One-Line Pitches", v2: it speaks straight to the friend who has never written a line of code — you don't need to — and promises that telling the idea in plain words to an AI agent is enough for a real, working version to be tapping on their phone by tonight, built while they did nothing at all. `main.ts` writes the line to `/output/entry.txt` and prints it to stdout.
 
 ## Run it
 
